@@ -70,11 +70,11 @@ public class ClockModifikations implements Listener {
 
 		Location loc = SpawnsCFG.getClockSpawn(slot);
 
-		//System.out.println("DEBUG #01");
+		// System.out.println("DEBUG #01");
 
 		if (loc != null) {
 
-			//System.out.println("DEBUG #02");
+			// System.out.println("DEBUG #02");
 
 			Player p = (Player) e.getWhoClicked();
 //			System.out.println(loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + ", " + loc.getWorld().getName());
@@ -88,22 +88,21 @@ public class ClockModifikations implements Listener {
 	public void onUse(PlayerInteractEvent pie) {
 
 		Player p = pie.getPlayer();
-
-		// try {
+	
+		try {
 
 		if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cCityclock")) {
 
 			p.openInventory(ClockModifikations.invCreate());
 
-			// }
-
-			// } catch (Exception e) {
+		
+		}
+			
+		} catch (Exception e) {
 
 			// TODO: handle exception
-
-			// }
-
+	
 		}
 	}
-
 }
+

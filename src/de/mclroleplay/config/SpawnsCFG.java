@@ -50,7 +50,7 @@ public class SpawnsCFG {
 					int y = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".y");
 					int z = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".z");
 
-					System.out.println("spawns." + cs.getKeys(false).toArray()[i] + ".world");
+					//System.out.println("spawns." + cs.getKeys(false).toArray()[i] + ".world");
 
 					Location loc = new Location(world, x, y, z);
 

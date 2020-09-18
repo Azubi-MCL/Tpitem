@@ -55,8 +55,7 @@ public class MclTpitem extends JavaPlugin {
 		super.onDisable();
 
 		// Disable info
-		getServer().getConsoleSender()
-				.sendMessage(ChatColor.RED + pdf.getName() + " " + pdf.getVersion() + " has been diabled.");
+		getServer().getConsoleSender().sendMessage(ChatColor.RED + pdf.getName() + " " + pdf.getVersion() + " has been diabled.");
 
 	}
 
