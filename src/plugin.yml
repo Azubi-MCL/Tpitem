@@ -2,7 +2,7 @@ name: Mcl-Tpitem
 authors: [craftpi, FallvonWahnsinn, SkyLightEffect]
 coder: [craftpi, FallvonWahnsinn, SkyLightEffect]
 main: de.mclroleplay.main.MclTpitem
-version: 1.0.5
+version: 1.0.6
 api-version: 1.16
 description: Dieses Plugin fügt dem Beruf Magier einen neuen craftbaren Gegentand hinzu.
 website: www.minecraft-server.eu/server/index/216B4
