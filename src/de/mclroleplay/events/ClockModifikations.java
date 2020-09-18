@@ -5,7 +5,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,17 +17,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 import de.mclroleplay.config.SpawnsCFG;
 
 public class ClockModifikations implements Listener {
-	
+
 	public static String invName = "§4Teleporter";
-	
-	//Gui Erstellung
+
+	// Gui Erstellung
 	public static Inventory invCreate() {
 
 		// inv größe per config
 		Inventory i = Bukkit.getServer().createInventory(null, 6 * 9, invName);
 
-//		ConfigurationSection cs = config.getConfigurationSection("spawns");
-		
 		List<String> spawns = SpawnsCFG.getSpawns();
 
 		int slot = 9;
@@ -36,13 +33,11 @@ public class ClockModifikations implements Listener {
 		for (int j = 0; j < spawns.size(); j++) {
 
 			slot += 1;
-		
+
 			ItemStack tName = new ItemStack(Material.FILLED_MAP);
 			ItemMeta me = tName.getItemMeta();
-			me.setDisplayName(spawns.get(j));
-			//
+			me.setDisplayName("§c" + spawns.get(j));
 			tName.setItemMeta(me);
-//			i.setItem(10, tName);
 			i.setItem(slot, tName);
 
 		}
@@ -50,7 +45,7 @@ public class ClockModifikations implements Listener {
 		return i;
 
 	}
-	
+
 	@EventHandler
 	public static void eventCanceld(InventoryClickEvent e) {
 
@@ -67,7 +62,6 @@ public class ClockModifikations implements Listener {
 
 	}
 
-
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 
@@ -75,15 +69,15 @@ public class ClockModifikations implements Listener {
 		slot -= 10;
 
 		Location loc = SpawnsCFG.getClockSpawn(slot);
-		
-		System.out.println("DEBUG #01");
-		
+
+		//System.out.println("DEBUG #01");
+
 		if (loc != null) {
-			
-			System.out.println("DEBUG #02");
-			
+
+			//System.out.println("DEBUG #02");
+
 			Player p = (Player) e.getWhoClicked();
-			System.out.println(loc.getBlockX()+", "+loc.getBlockY()+", "+loc.getBlockZ()+", "+loc.getWorld().getName());
+//			System.out.println(loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + ", " + loc.getWorld().getName());
 			p.teleport(loc);
 			p.closeInventory();
 		}
@@ -95,23 +89,21 @@ public class ClockModifikations implements Listener {
 
 		Player p = pie.getPlayer();
 
-		//try {
+		// try {
 
-			if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cCityclock")) {
+		if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cCityclock")) {
 
-				p.openInventory(ClockModifikations.invCreate());
+			p.openInventory(ClockModifikations.invCreate());
 
-			//}
+			// }
 
-		//} catch (Exception e) {
+			// } catch (Exception e) {
 
 			// TODO: handle exception
 
-		//}
+			// }
 
-	
-			}
+		}
 	}
-	
 
 }

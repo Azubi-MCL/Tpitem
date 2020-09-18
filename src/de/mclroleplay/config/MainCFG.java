@@ -7,6 +7,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class MainCFG {
 
+	@SuppressWarnings("unused")
 	private MclTpitem pl;
 
 	public static FileConfiguration config;
@@ -15,6 +16,8 @@ public class MainCFG {
 
 		this.pl = pl;
 		config = pl.getConfig();
+		pl.saveDefaultConfig();
+
 	}
 
 	public static String getClockName() {
@@ -23,6 +26,7 @@ public class MainCFG {
 		if (name == null)
 			return null;
 		return ChatColor.translateAlternateColorCodes('&', name);
+
 	}
 
 	public static boolean isRezeptabfrage() {
@@ -37,5 +41,11 @@ public class MainCFG {
 		}
 
 		return lines;
+	}
+
+	public static void gui() {
+
+		config.getString("");
+
 	}
 }

@@ -21,3 +21,6 @@ Uhr Name: '&cCityclock'
 
 #Name des Huds
 Hud Name: '&4Teleporter'
+
+#Gui Größe
+Größe Gui: 6*9

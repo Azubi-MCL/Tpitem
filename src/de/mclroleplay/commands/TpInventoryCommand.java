@@ -7,25 +7,24 @@ import org.bukkit.entity.Player;
 
 import de.mclroleplay.events.ClockModifikations;
 
-public class TpInventoryCommand implements CommandExecutor{
-	
+public class TpInventoryCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String lable, String[] args) {
-		
+
 		if (!(cs instanceof Player)) {
-			
+
 			cs.sendMessage("§4Du must ein Spieler sein");
 			return true;
-			
-		}else {
-			
+
+		} else {
+
 			Player p = (Player) cs;
-			p.openInventory(ClockModifikations.invCreate());	
+			p.openInventory(ClockModifikations.invCreate());
 			return true;
-			
+
 		}
-		
+
 	}
 
 }

@@ -1,7 +1,6 @@
 package de.mclroleplay.recipes;
 
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -10,10 +9,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.main.MclTpitem;
-import net.md_5.bungee.api.ChatColor;
 
 public class Clock {
-	
 	
 	@SuppressWarnings("deprecation")
 	public static void clockrecipe(MclTpitem plugin) {
@@ -41,9 +38,11 @@ public class Clock {
 			
 			String lines[] = MainCFG.getRecipeLines();
 			clockRezept.shape(lines[0], lines[1], lines[2]);
+			
 		} else {
 			
 			clockRezept.shape(" [ ", "R0 ", " [ ");
+			
 		}
 		
 		clockRezept.setIngredient('0', Material.CLOCK);

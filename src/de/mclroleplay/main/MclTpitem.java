@@ -17,74 +17,47 @@ import de.mclroleplay.config.SpawnsCFG;
 import de.mclroleplay.events.ClockModifikations;
 import de.mclroleplay.recipes.Clock;
 
-public class MclTpitem extends JavaPlugin{
+public class MclTpitem extends JavaPlugin {
 
 	public static PluginDescriptionFile pdf;
 	public static File file;
 	public static FileConfiguration config;
-	
+
 	@Override
 	public void onEnable() {
 		super.onEnable();
-		
+
 		// Enable info
 		pdf = this.getDescription();
-		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + pdf.getName() + " " + pdf.getVersion() + " has been enabled.");
-	
-		//Save config
-		
-		new MainCFG().loadConfig(this);
-		
-		try {
-			//this.saveResource("config.yml", false);
-			//this.saveResource("spawns.yml", false);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		//if (!getDataFolder().exists()) {
-			
-			//getDataFolder().mkdir();
-			
-			//if (!file.exists()) {
-				
-				//try (InputStream in = getResource("spawns.yml")) {
-					
-				
-					//Files.copy(in, file.toPath());
-					
-				//} catch (IOException e) {
+		getServer().getConsoleSender()
+				.sendMessage(ChatColor.GREEN + pdf.getName() + " " + pdf.getVersion() + " has been enabled.");
 
-					//e.printStackTrace();
-				
-				//}
-			
-			//}
-			
-		//}
-		
+		// Save configs
+		new MainCFG().loadConfig(this);
+		SpawnsCFG.loadYml();
+
 		// Class run
 		Clock.clockrecipe(this);
-		SpawnsCFG.loadYml();
-		
+
 		// Events
 		PluginManager pluginManager = Bukkit.getPluginManager();
 		pluginManager.registerEvents(new ClockModifikations(), this);
-		
+
 		// Commands
 		this.getCommand("minv").setExecutor(new TpInventoryCommand());
 		this.getCommand("mspawn").setExecutor(new SpawnCommand());
-		this.getCommand("msremove").setExecutor(new SpawnRemoveCommand());
-		
-	}	
-	
+		this.getCommand("mremove").setExecutor(new SpawnRemoveCommand());
+
+	}
+
 	@Override
 	public void onDisable() {
 		super.onDisable();
-		
+
 		// Disable info
-		getServer().getConsoleSender().sendMessage(ChatColor.RED + pdf.getName() + " " + pdf.getVersion() + " has been diabled.");
-	
+		getServer().getConsoleSender()
+				.sendMessage(ChatColor.RED + pdf.getName() + " " + pdf.getVersion() + " has been diabled.");
+
 	}
-	
+
 }

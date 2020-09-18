@@ -9,15 +9,15 @@ website: www.minecraft-server.eu/server/index/216B4
 
 commands:
 
-    Minv:
+    minv:
         description: Admin TP interfase command
         usage: /minv
         
-    Mspawn:
+    mspawn:
         description: Spawn point für Tpitem
         usage: /mspawn <name>
         
-    Msremove:
+    mremove:
         description: Löscht den angegebenen Spawn
-        usage: /msremove <name>
+        usage: /mremove <name>
         
