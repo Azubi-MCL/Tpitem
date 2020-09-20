@@ -48,4 +48,17 @@ public class MainCFG {
 		config.getString("");
 
 	}
+
+	public static String getInfName() {
+
+		String name = config.getString("Hud Name");
+
+		if (name == null)
+
+			return null;
+
+		return ChatColor.translateAlternateColorCodes('&', name);
+
+	}
+
 }

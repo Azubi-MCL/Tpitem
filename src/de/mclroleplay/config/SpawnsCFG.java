@@ -69,10 +69,12 @@ public class SpawnsCFG {
 
 		ConfigurationSection cs = config.getConfigurationSection("spawns");
 
-		for (String spawn : cs.getKeys(false)) {
-			spawns.add(spawn);
-		}
+		if (cs != null && cs.getKeys(false) != null) {
 
+			for (String spawn : cs.getKeys(false)) {
+				spawns.add(spawn);
+			}
+		}
 		return spawns;
 	}
 

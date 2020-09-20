@@ -14,11 +14,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
 
 public class ClockModifikations implements Listener {
 
-	public static String invName = "§4Teleporter";
+	public static String invName = MainCFG.getInfName() ;
 
 	// Gui Erstellung
 	public static Inventory invCreate() {
@@ -70,11 +71,11 @@ public class ClockModifikations implements Listener {
 
 		Location loc = SpawnsCFG.getClockSpawn(slot);
 
-		//System.out.println("DEBUG #01");
+		// System.out.println("DEBUG #01");
 
 		if (loc != null) {
 
-			//System.out.println("DEBUG #02");
+			// System.out.println("DEBUG #02");
 
 			Player p = (Player) e.getWhoClicked();
 //			System.out.println(loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + ", " + loc.getWorld().getName());
@@ -90,20 +91,15 @@ public class ClockModifikations implements Listener {
 		Player p = pie.getPlayer();
 
 		// try {
+		ItemStack item = pie.getItem();
+		if (item != null) {
 
-		if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cCityclock")) {
+			if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
-			p.openInventory(ClockModifikations.invCreate());
+				p.openInventory(ClockModifikations.invCreate());
 
-			// }
-
-			// } catch (Exception e) {
-
-			// TODO: handle exception
-
-			// }
-
+			}
 		}
-	}
 
+	}
 }
