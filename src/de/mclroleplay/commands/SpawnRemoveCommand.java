@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import de.mclroleplay.config.SpawnsCFG;
+
 public class SpawnRemoveCommand implements CommandExecutor {
 
 	public static File file;
@@ -15,11 +17,11 @@ public class SpawnRemoveCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String lable, String[] args) {
 
-//		String e1 = args[0];
-//		if (SpawnsCFG.getSpawns().contains(e1)) {
-//			
-//			
-//		}
+		String e1 = args[0];
+		if (SpawnsCFG.getSpawns().contains(e1)) {
+			
+			
+		}
 		return false;
 
 		// ConfigurationSection s = spawns.getConfigurationSection("spawns");

@@ -14,11 +14,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
 
 public class ClockModifikations implements Listener {
 
-	public static String invName = "§4Teleporter";
+	public static String invName = MainCFG.getInfName() ;
 
 	// Gui Erstellung
 	public static Inventory invCreate() {
@@ -88,21 +89,17 @@ public class ClockModifikations implements Listener {
 	public void onUse(PlayerInteractEvent pie) {
 
 		Player p = pie.getPlayer();
-	
-		try {
 
-		if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cCityclock")) {
+		// try {
+		ItemStack item = pie.getItem();
+		if (item != null) {
 
-			p.openInventory(ClockModifikations.invCreate());
+			if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
-		
+				p.openInventory(ClockModifikations.invCreate());
+
+			}
 		}
-			
-		} catch (Exception e) {
 
-			// TODO: handle exception
-	
-		}
 	}
 }
-
