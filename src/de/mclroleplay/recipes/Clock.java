@@ -60,64 +60,97 @@ public class Clock {
 		return cityclock;
 	}
 
-	public static Boolean isClock(ItemStack i ) {
+	public static Boolean isClock(ItemStack i) {
 		ItemStack cityclock = clockCreate();
-		
-		if(i.getItemMeta() == cityclock.getItemMeta()) {
-			
+
+		if (i.getItemMeta() == cityclock.getItemMeta()) {
+
 			if (i.getType() == cityclock.getType()) {
-				
+
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	@SuppressWarnings("deprecation")
+
 	public static void clockRemove(Player p) {
 
-		ItemStack mainhand =  p.getInventory().getItemInMainHand();
-		ItemStack offhand =  p.getInventory().getItemInOffHand();
-		
-		if (isClock(mainhand) || isClock(offhand)) {
+		ItemStack mainhand = p.getInventory().getItemInMainHand();
+		ItemStack offhand = p.getInventory().getItemInOffHand();
 
-			if (isClock(mainhand)) {
-				
-				ItemStack is = p.getItemInHand();
+		if (mainhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
-				if (is.getAmount() > 1) {
-					
-					is.setAmount(is.getAmount() - 1);
-					p.setItemInHand(is);
-					
-				} else {
-					
-					p.setItemInHand(null);
-					
-				}
-				
-				p.updateInventory();
-				
-			} else if (isClock(offhand)) {
-				
-				ItemStack is = p.getInventory().getItemInOffHand();
+			if (mainhand.getAmount() > 1) {
 
-				if (is.getAmount() > 1) {
-					
-					is.setAmount(is.getAmount() - 1);
-					p.getInventory().setItemInOffHand(is);
-					
-				} else {
-					
-					p.getInventory().setItemInOffHand(null);
-					
-				}
-				
-				p.updateInventory();
+				mainhand.setAmount(mainhand.getAmount() - 1);
+				p.getInventory().setItemInMainHand(mainhand);
+
+			} else {
+
+				p.getInventory().setItemInMainHand(null);
+
 			}
 
+			p.updateInventory();
+
+		} else if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
+
+			if (offhand.getAmount() > 1) {
+
+				offhand.setAmount(offhand.getAmount() - 1);
+				p.getInventory().setItemInOffHand(offhand);
+
+			} else {
+
+				p.getInventory().setItemInOffHand(null);
+
+			}
+			
+			p.updateInventory();
+
 		}
-
 	}
-
 }
+
+//ItemStack mainhand =  p.getInventory().getItemInMainHand();
+//ItemStack offhand =  p.getInventory().getItemInOffHand();
+//
+//if (isClock(mainhand) || isClock(offhand)) {
+//
+//	if (isClock(mainhand)) {
+//		
+//		ItemStack is = p.getItemInHand();
+//
+//		if (is.getAmount() > 1) {
+//			
+//			is.setAmount(is.getAmount() - 1);
+//			p.setItemInHand(is);
+//			
+//		} else {
+//			
+//			p.setItemInHand(null);
+//			
+//		}
+//		
+//		p.updateInventory();
+//		
+//	} else if (isClock(offhand)) {
+//		
+//		ItemStack is = p.getInventory().getItemInOffHand();
+//
+//		if (is.getAmount() > 1) {
+//			
+//			is.setAmount(is.getAmount() - 1);
+//			p.getInventory().setItemInOffHand(is);
+//			
+//		} else {
+//			
+//			p.getInventory().setItemInOffHand(null);
+//			
+//		}
+//		
+//		p.updateInventory();
+//	}
+//
+//}
