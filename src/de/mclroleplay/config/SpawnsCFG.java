@@ -19,46 +19,56 @@ public class SpawnsCFG {
 	private static FileConfiguration config;
 
 	public static void loadYml() {
+
 		file = new File(MclTpitem.getPlugin(MclTpitem.class).getDataFolder(), "spawns.yml");
 		config = YamlConfiguration.loadConfiguration(file);
 		sv();
+
 	}
 
 	// speicher config
 	public static void sv() {
+
 		try {
+
 			config.save(file);
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
+
 		}
 	}
 
-	// ruft spawn locationss ab
-	public static Location getClockSpawn(int slot) {
+	// ruft spawn locations ab
+	public static Location getClockSpawn(int slot, String invtest) {
 
 		ConfigurationSection cs = config.getConfigurationSection("spawns");
 
-		if (config.contains("spawns") && cs.getKeys(false) != null) {
+		if (invtest.equals(MainCFG.getInfName())) {
+			
+			if (config.contains("spawns") && cs.getKeys(false) != null) {
 
-			for (int i = 0; i < cs.getKeys(false).size(); i++) {
-				if (i == slot) {
+				for (int i = 0; i < cs.getKeys(false).size(); i++) {
+					if (i == slot) {
 
-					String wName = config.getString("spawns." + cs.getKeys(false).toArray()[i] + ".world");
-					World world = Bukkit.getWorld(wName);
+						String wName = config.getString("spawns." + cs.getKeys(false).toArray()[i] + ".world");
+						World world = Bukkit.getWorld(wName);
 
-					int x = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".x");
-					int y = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".y");
-					int z = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".z");
+						int x = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".x");
+						int y = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".y");
+						int z = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".z");
 
-					System.out.println("spawns." + cs.getKeys(false).toArray()[i] + ".world");
+//					System.out.println("spawns." + cs.getKeys(false).toArray()[i] + ".world");
 
-					Location loc = new Location(world, x, y, z);
+						Location loc = new Location(world, x, y, z);
 
-					return loc;
+						return loc;
+					}
 				}
 			}
 		}
-
+		
 		return null;
 	}
 

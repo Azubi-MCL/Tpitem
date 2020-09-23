@@ -23,4 +23,7 @@ Uhr Name: '&cCityclock'
 Hud Name: '&4Teleporter'
 
 #Gui Größe
-Größe Gui: 6*9
+Gui scale: 6*9
+
+#Anzahl der items beim craften
+Clock anzahl: 8

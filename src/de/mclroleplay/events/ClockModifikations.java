@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
+import de.mclroleplay.recipes.Clock;
 
 public class ClockModifikations implements Listener {
 
@@ -24,7 +25,6 @@ public class ClockModifikations implements Listener {
 	// Gui Erstellung
 	public static Inventory invCreate() {
 
-		// inv größe per config
 		Inventory i = Bukkit.getServer().createInventory(null, 6 * 9, invName);
 
 		List<String> spawns = SpawnsCFG.getSpawns();
@@ -66,40 +66,42 @@ public class ClockModifikations implements Listener {
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 
-		int slot = e.getSlot();
-		slot -= 10;
+//		if (e.getView().getTitle().equals(invName)) {
+		String invtest = e.getView().getTitle();
+		
+			int slot = e.getSlot();
+			slot -= 10;
 
-		Location loc = SpawnsCFG.getClockSpawn(slot);
+			Location loc = SpawnsCFG.getClockSpawn(slot,invtest);
 
-		// System.out.println("DEBUG #01");
+			if (loc != null) {
 
-		if (loc != null) {
-
-			// System.out.println("DEBUG #02");
-
-			Player p = (Player) e.getWhoClicked();
-//			System.out.println(loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + ", " + loc.getWorld().getName());
-			p.teleport(loc);
-			p.closeInventory();
+				Player p = (Player) e.getWhoClicked();
+				p.teleport(loc);
+				p.closeInventory();
+				Clock.clockRemove(p);
+			}
 		}
+		
+//	}
 
-	}
-
+//	private void clockanzahl() {
+//		// TODO Auto-generated method stub
+//
+//	}
 	@EventHandler
 	public void onUse(PlayerInteractEvent pie) {
 
 		Player p = pie.getPlayer();
 
-		// try {
 		ItemStack item = pie.getItem();
 		if (item != null) {
 
 			if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
 				p.openInventory(ClockModifikations.invCreate());
-
+				//p.getInventory().getItemInHand());
 			}
 		}
-
 	}
 }

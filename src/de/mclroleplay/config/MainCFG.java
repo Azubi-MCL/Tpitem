@@ -9,7 +9,6 @@ public class MainCFG {
 
 	@SuppressWarnings("unused")
 	private MclTpitem pl;
-
 	public static FileConfiguration config;
 
 	public void loadConfig(MclTpitem pl) {
@@ -23,17 +22,23 @@ public class MainCFG {
 	public static String getClockName() {
 
 		String name = config.getString("Uhr Name");
+		
 		if (name == null)
+		
 			return null;
+		
 		return ChatColor.translateAlternateColorCodes('&', name);
 
 	}
 
 	public static boolean isRezeptabfrage() {
+		
 		return config.getBoolean("Rezeptabfrage");
+		
 	}
 
 	public static String[] getRecipeLines() {
+		
 		String lines[] = new String[3];
 
 		for (int i = 0; i < 3; i++) {
@@ -41,11 +46,12 @@ public class MainCFG {
 		}
 
 		return lines;
+		
 	}
 
-	public static void gui() {
+	public static String gui() {
 
-		config.getString("");
+		return config.getString("Gui scale");
 
 	}
 
@@ -59,6 +65,12 @@ public class MainCFG {
 
 		return ChatColor.translateAlternateColorCodes('&', name);
 
+	}
+	
+	public static int getClockAnzahl() {
+		
+		return config.getInt("Clock anzahl");
+		
 	}
 
 }
