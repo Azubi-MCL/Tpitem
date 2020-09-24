@@ -66,7 +66,6 @@ public class ClockModifikations implements Listener {
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 
-//		if (e.getView().getTitle().equals(invName)) {
 		String invtest = e.getView().getTitle();
 		
 			int slot = e.getSlot();
@@ -79,11 +78,10 @@ public class ClockModifikations implements Listener {
 				Player p = (Player) e.getWhoClicked();
 				p.teleport(loc);
 				p.closeInventory();
-				Clock.clockRemove(p);
+				Clock.clockRemoveMain(p);
+				
 			}
 		}
-		
-//	}
 
 //	private void clockanzahl() {
 //		// TODO Auto-generated method stub
