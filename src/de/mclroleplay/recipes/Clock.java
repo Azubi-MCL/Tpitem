@@ -115,18 +115,12 @@ public class Clock {
 //ItemStack offhand =  p.getInventory().getItemInOffHand();
 //
 //if (isClock(mainhand) || isClock(offhand)) {
-//
-//	if (isClock(mainhand)) {
-//		
+//	if (isClock(mainhand)) {	
 //		ItemStack is = p.getItemInHand();
-//
-//		if (is.getAmount() > 1) {
-//			
+//		if (is.getAmount() > 1) {	
 //			is.setAmount(is.getAmount() - 1);
-//			p.setItemInHand(is);
-//			
-//		} else {
-//			
+//			p.setItemInHand(is);	
+//		} else {	
 //			p.setItemInHand(null);
 //			
 //		}

@@ -29,8 +29,7 @@ public class MclTpitem extends JavaPlugin {
 
 		// Enable info
 		pdf = this.getDescription();
-		getServer().getConsoleSender()
-				.sendMessage(ChatColor.GREEN + pdf.getName() + " " + pdf.getVersion() + " has been enabled.");
+		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + pdf.getName() + " " + pdf.getVersion() + " has been enabled.");
 
 		// Save configs
 		new MainCFG().loadConfig(this);

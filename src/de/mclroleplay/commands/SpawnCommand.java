@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import de.mclroleplay.config.SpawnsCFG;
+import de.mclroleplay.rpengine.config.PlayersCFG;
 
 public class SpawnCommand implements CommandExecutor {
 
@@ -17,22 +18,26 @@ public class SpawnCommand implements CommandExecutor {
 
 		if (cs instanceof Player) {
 			// spawn setzen
-			try {
+			if (PlayersCFG.getJobNames(p).contains("Magier")) {
+				
+				try {
 
-				String name = args[0];
-				SpawnsCFG.setSpawn(name, p.getLocation());
+					String name = args[0];
+					SpawnsCFG.setSpawn(name, p.getLocation());
 
-				Bukkit.broadcastMessage("§2Magierer Haus " + "§3" + name + " §2wurde gesetzt");
+					Bukkit.broadcastMessage("§2Magierer Haus " + "§3" + name + " §2wurde gesetzt");
 
-				return true;
+					return true;
 
-			} catch (Exception e) {
+				} catch (Exception e) {
 
-				Bukkit.broadcastMessage("§cDu must einen Spawn Namen eingeben");
+					Bukkit.broadcastMessage("§cDu must einen Spawn Namen eingeben");
 
-				return false;
+					return false;
 
-			}
+				}
+				
+			}	
 
 		} else {
 
