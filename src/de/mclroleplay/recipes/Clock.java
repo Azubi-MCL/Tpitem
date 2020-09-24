@@ -77,7 +77,7 @@ public class Clock {
 	public static void clockRemoveMain(Player p) {
 
 		ItemStack mainhand = p.getInventory().getItemInMainHand();
-//		ItemStack offhand = p.getInventory().getItemInOffHand();
+		ItemStack offhand = p.getInventory().getItemInOffHand();
 
 		if (mainhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
@@ -92,24 +92,22 @@ public class Clock {
 
 			}
 			p.updateInventory();
-		}
+		}else if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
-//		if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
-//
-//			if (offhand.getAmount() > 1) {
-//
-//				offhand.setAmount(offhand.getAmount() - 1);
-//				p.getInventory().setItemInOffHand(offhand);
-//
-//			} else {
-//
-//				p.getInventory().setItemInOffHand(null);
-//
-//			}
-//			
-//			p.updateInventory();
-//
-//		}
+			if (offhand.getAmount() > 1) {
+
+				offhand.setAmount(offhand.getAmount() - 1);
+				p.getInventory().setItemInOffHand(offhand);
+
+			} else {
+
+				p.getInventory().setItemInOffHand(null);
+
+			}
+
+			p.updateInventory();
+
+		}
 	}
 }
 
