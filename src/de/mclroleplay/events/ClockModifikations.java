@@ -10,9 +10,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
@@ -20,7 +23,7 @@ import de.mclroleplay.recipes.Clock;
 
 public class ClockModifikations implements Listener {
 
-	public static String invName = MainCFG.getInfName() ;
+	public static String invName = MainCFG.getInfName();
 
 	// Gui Erstellung
 	public static Inventory invCreate() {
@@ -67,21 +70,21 @@ public class ClockModifikations implements Listener {
 	public void onClick(InventoryClickEvent e) {
 
 		String invtest = e.getView().getTitle();
-		
-			int slot = e.getSlot();
-			slot -= 10;
 
-			Location loc = SpawnsCFG.getClockSpawn(slot,invtest);
+		int slot = e.getSlot();
+		slot -= 10;
 
-			if (loc != null) {
+		Location loc = SpawnsCFG.getClockSpawn(slot, invtest);
 
-				Player p = (Player) e.getWhoClicked();
-				p.teleport(loc);
-				p.closeInventory();
-				Clock.clockRemoveMain(p);
-				
-			}
+		if (loc != null) {
+
+			Player p = (Player) e.getWhoClicked();
+			p.teleport(loc);
+			p.closeInventory();
+			Clock.clockRemoveMain(p);
+			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 10000, 1));
 		}
+	}
 
 //	private void clockanzahl() {
 //		// TODO Auto-generated method stub
@@ -93,13 +96,18 @@ public class ClockModifikations implements Listener {
 		Player p = pie.getPlayer();
 
 		ItemStack item = pie.getItem();
-		if (item != null) {
+		EquipmentSlot main = pie.getHand();
 
-			if (pie.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
+		if (main == EquipmentSlot.HAND) {
+			if (item != null) {
 
-				p.openInventory(ClockModifikations.invCreate());
-				//p.getInventory().getItemInHand());
+				if (item.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
+
+					p.openInventory(ClockModifikations.invCreate());
+
+				}
 			}
 		}
+
 	}
 }

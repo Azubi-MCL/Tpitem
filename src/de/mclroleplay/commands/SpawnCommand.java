@@ -37,7 +37,11 @@ public class SpawnCommand implements CommandExecutor {
 
 				}
 				
-			}	
+			}else {
+				
+				Bukkit.broadcastMessage("§cDu must ein Magier sein");
+				
+			}
 
 		} else {
 

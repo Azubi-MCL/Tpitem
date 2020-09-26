@@ -12,19 +12,22 @@ public class TpInventoryCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String lable, String[] args) {
 
-		if (!(cs instanceof Player)) {
+		Player p = (Player) cs;
+		
+		if (p.hasPermission("group.admin")) {
+			
+			if (!(cs instanceof Player)) {
 
-			cs.sendMessage("§4Du must ein Spieler sein");
-			return true;
+				cs.sendMessage("§4Du must ein Spieler sein");
+				return true;
 
-		} else {
+			} else {
 
-			Player p = (Player) cs;
-			p.openInventory(ClockModifikations.invCreate());
-			return true;
+				p.openInventory(ClockModifikations.invCreate());
+				return true;
 
+			}
 		}
-
+		return false;
 	}
-
 }
