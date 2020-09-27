@@ -13,11 +13,9 @@ import de.mclroleplay.main.MclTpitem;
 
 public class Clock {
 
+	// Clock Rezept
 	@SuppressWarnings("deprecation")
 	public static void clockrecipe(MclTpitem plugin) {
-
-		// ItemUtil item1 = new
-		// ItemUtil(Material.DIAMOND_PICKAXE).setDurability((short)10);
 
 		ShapedRecipe clockRezept = new ShapedRecipe(clockCreate());
 
@@ -44,6 +42,7 @@ public class Clock {
 		 */
 	}
 
+	// Clock erstelung
 	public static ItemStack clockCreate() {
 
 		ItemStack cityclock = new ItemStack(Material.CLOCK, MainCFG.getClockAnzahl());
@@ -74,6 +73,7 @@ public class Clock {
 		return false;
 	}
 
+	// clock entfernen nach benutzung
 	public static void clockRemoveMain(Player p) {
 
 		ItemStack mainhand = p.getInventory().getItemInMainHand();
@@ -92,7 +92,7 @@ public class Clock {
 
 			}
 			p.updateInventory();
-		}else if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
+		} else if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
 			if (offhand.getAmount() > 1) {
 
@@ -110,39 +110,3 @@ public class Clock {
 		}
 	}
 }
-
-//ItemStack mainhand =  p.getInventory().getItemInMainHand();
-//ItemStack offhand =  p.getInventory().getItemInOffHand();
-//
-//if (isClock(mainhand) || isClock(offhand)) {
-//	if (isClock(mainhand)) {	
-//		ItemStack is = p.getItemInHand();
-//		if (is.getAmount() > 1) {	
-//			is.setAmount(is.getAmount() - 1);
-//			p.setItemInHand(is);	
-//		} else {	
-//			p.setItemInHand(null);
-//			
-//		}
-//		
-//		p.updateInventory();
-//		
-//	} else if (isClock(offhand)) {
-//		
-//		ItemStack is = p.getInventory().getItemInOffHand();
-//
-//		if (is.getAmount() > 1) {
-//			
-//			is.setAmount(is.getAmount() - 1);
-//			p.getInventory().setItemInOffHand(is);
-//			
-//		} else {
-//			
-//			p.getInventory().setItemInOffHand(null);
-//			
-//		}
-//		
-//		p.updateInventory();
-//	}
-//
-//}

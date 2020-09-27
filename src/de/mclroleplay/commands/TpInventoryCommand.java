@@ -27,6 +27,10 @@ public class TpInventoryCommand implements CommandExecutor {
 				return true;
 
 			}
+		}else {
+			
+			cs.sendMessage("§4du hast keine Berechtigung diesen Befehl zu verwenden");
+			
 		}
 		return false;
 	}

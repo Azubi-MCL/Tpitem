@@ -18,6 +18,7 @@ public class SpawnsCFG {
 	private static File file;
 	private static FileConfiguration config;
 
+	// Spawns load
 	public static void loadYml() {
 
 		file = new File(MclTpitem.getPlugin(MclTpitem.class).getDataFolder(), "spawns.yml");
@@ -26,7 +27,7 @@ public class SpawnsCFG {
 
 	}
 
-	// speicher config
+	// Speichert config
 	public static void sv() {
 
 		try {
@@ -40,13 +41,13 @@ public class SpawnsCFG {
 		}
 	}
 
-	// ruft spawn locations ab
+	// Ruft spawn locations ab
 	public static Location getClockSpawn(int slot, String invtest) {
 
 		ConfigurationSection cs = config.getConfigurationSection("spawns");
 
 		if (invtest.equals(MainCFG.getInfName())) {
-			
+
 			if (config.contains("spawns") && cs.getKeys(false) != null) {
 
 				for (int i = 0; i < cs.getKeys(false).size(); i++) {
@@ -59,8 +60,6 @@ public class SpawnsCFG {
 						int y = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".y");
 						int z = config.getInt("spawns." + cs.getKeys(false).toArray()[i] + ".z");
 
-//					System.out.println("spawns." + cs.getKeys(false).toArray()[i] + ".world");
-
 						Location loc = new Location(world, x, y, z);
 
 						return loc;
@@ -68,11 +67,11 @@ public class SpawnsCFG {
 				}
 			}
 		}
-		
+
 		return null;
 	}
 
-	// ruft spawn namen ab
+	// Ruft spawn namen ab
 	public static List<String> getSpawns() {
 
 		List<String> spawns = new ArrayList<String>();
@@ -88,7 +87,7 @@ public class SpawnsCFG {
 		return spawns;
 	}
 
-	// spawns setzen
+	// Spawns setzen
 	public static void setSpawn(String name, Location loc) {
 
 		String prefix = "spawns." + name;

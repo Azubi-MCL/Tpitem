@@ -50,6 +50,7 @@ public class ClockModifikations implements Listener {
 
 	}
 
+	// Klicken sperren
 	@EventHandler
 	public static void eventCanceld(InventoryClickEvent e) {
 
@@ -66,6 +67,7 @@ public class ClockModifikations implements Listener {
 
 	}
 
+	// Teleportieren beim Clicken
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 
@@ -82,14 +84,11 @@ public class ClockModifikations implements Listener {
 			p.teleport(loc);
 			p.closeInventory();
 			Clock.clockRemoveMain(p);
-			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 10000, 1));
+			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000, 1));
 		}
 	}
 
-//	private void clockanzahl() {
-//		// TODO Auto-generated method stub
-//
-//	}
+	// Item Benutzung
 	@EventHandler
 	public void onUse(PlayerInteractEvent pie) {
 

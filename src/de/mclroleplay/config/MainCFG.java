@@ -11,6 +11,7 @@ public class MainCFG {
 	private MclTpitem pl;
 	public static FileConfiguration config;
 
+	// Config load
 	public void loadConfig(MclTpitem pl) {
 
 		this.pl = pl;
@@ -19,6 +20,7 @@ public class MainCFG {
 
 	}
 
+	// Name der Uhr 
 	public static String getClockName() {
 
 		String name = config.getString("Uhr Name");
@@ -31,12 +33,14 @@ public class MainCFG {
 
 	}
 
+	// Boolean Rezeptabfrage
 	public static boolean isRezeptabfrage() {
 		
 		return config.getBoolean("Rezeptabfrage");
 		
 	}
 
+	// Rezept anordnung
 	public static String[] getRecipeLines() {
 		
 		String lines[] = new String[3];
@@ -49,12 +53,14 @@ public class MainCFG {
 		
 	}
 
+	// Gui größe
 	public static String gui() {
 
 		return config.getString("Gui scale");
 
 	}
 
+	// Inventar Name
 	public static String getInfName() {
 
 		String name = config.getString("Hud Name");
@@ -67,6 +73,7 @@ public class MainCFG {
 
 	}
 	
+	// Clock anzahl beim Craften
 	public static int getClockAnzahl() {
 		
 		return config.getInt("Clock anzahl");
