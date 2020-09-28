@@ -78,35 +78,40 @@ public class Clock {
 
 		ItemStack mainhand = p.getInventory().getItemInMainHand();
 		ItemStack offhand = p.getInventory().getItemInOffHand();
+		try {
 
-		if (mainhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
+			if (mainhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
-			if (mainhand.getAmount() > 1) {
+				if (mainhand.getAmount() > 1) {
 
-				mainhand.setAmount(mainhand.getAmount() - 1);
-				p.getInventory().setItemInMainHand(mainhand);
+					mainhand.setAmount(mainhand.getAmount() - 1);
+					p.getInventory().setItemInMainHand(mainhand);
 
-			} else {
+				} else {
 
-				p.getInventory().setItemInMainHand(null);
+					p.getInventory().setItemInMainHand(null);
+
+				}
+				p.updateInventory();
+			} else if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
+
+				if (offhand.getAmount() > 1) {
+
+					offhand.setAmount(offhand.getAmount() - 1);
+					p.getInventory().setItemInOffHand(offhand);
+
+				} else {
+
+					p.getInventory().setItemInOffHand(null);
+
+				}
+
+				p.updateInventory();
 
 			}
-			p.updateInventory();
-		} else if (offhand.getItemMeta().getDisplayName().equalsIgnoreCase(MainCFG.getClockName())) {
 
-			if (offhand.getAmount() > 1) {
-
-				offhand.setAmount(offhand.getAmount() - 1);
-				p.getInventory().setItemInOffHand(offhand);
-
-			} else {
-
-				p.getInventory().setItemInOffHand(null);
-
-			}
-
-			p.updateInventory();
-
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 }

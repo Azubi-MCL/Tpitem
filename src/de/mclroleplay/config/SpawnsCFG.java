@@ -98,5 +98,15 @@ public class SpawnsCFG {
 
 		sv();
 	}
-
+	
+	public  static void getSpawnName(String sname) {
+		
+		String name = config.getString("spawns." + sname);
+		System.out.println("spawns." + name);
+		
+		config.set("spawns" + name , null);
+		
+		sv();		
+	
+	}
 }

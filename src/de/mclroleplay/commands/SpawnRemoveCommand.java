@@ -17,11 +17,10 @@ public class SpawnRemoveCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String lable, String[] args) {
 
-		String e1 = args[0];
-		if (SpawnsCFG.getSpawns().contains(e1)) {
-			
-			
-		}
+		String sname = args[0];
+
+		SpawnsCFG.getSpawnName(sname);
+
 		return false;
 
 		// ConfigurationSection s = spawns.getConfigurationSection("spawns");
