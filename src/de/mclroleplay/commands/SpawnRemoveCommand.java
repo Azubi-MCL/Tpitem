@@ -19,7 +19,7 @@ public class SpawnRemoveCommand implements CommandExecutor {
 
 		String sname = args[0];
 
-		SpawnsCFG.getSpawnName(sname);
+		SpawnsCFG.removeSpawn(sname);
 
 		return false;
 

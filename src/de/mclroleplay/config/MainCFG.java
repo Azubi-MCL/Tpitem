@@ -79,5 +79,11 @@ public class MainCFG {
 		return config.getInt("Clock anzahl");
 		
 	}
-
+	
+	// Spawn costen
+	public static int getSpawnCost( ) {
+		
+		return config.getInt("Spawn cost");
+		
+	}
 }
