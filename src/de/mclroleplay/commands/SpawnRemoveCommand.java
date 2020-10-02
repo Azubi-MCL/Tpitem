@@ -6,8 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-
-import de.mclroleplay.config.SpawnsCFG;
+import org.bukkit.entity.Player;
 
 public class SpawnRemoveCommand implements CommandExecutor {
 
@@ -17,9 +16,22 @@ public class SpawnRemoveCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String lable, String[] args) {
 
-		String sname = args[0];
+		Player p = (Player) cs;
+		
+		if (cs instanceof Player) {
+			
+			p.sendMessage("§4Dieser Befehl ist noch nicht verfügbar");
+			
+			return false;
+			
+		}else {
 
-		SpawnsCFG.removeSpawn(sname);
+			cs.sendMessage("§4Du must ein Spieler sein");
+
+		}
+//		String sname = args[0];
+//
+//		SpawnsCFG.removeSpawn(sname);
 
 		return false;
 

@@ -21,6 +21,7 @@ public class SpawnCommand implements CommandExecutor {
 		Player p = (Player) cs;
 
 		if (cs instanceof Player) {
+			
 			// spawn setzen
 			if (PlayersCFG.getJobNames(p).contains("Magier")) {
 				
@@ -28,6 +29,7 @@ public class SpawnCommand implements CommandExecutor {
 
 					String name = args[0];
 					
+					// kein eco service
 					if (MclTpitem.economy == null) {
 						
 						Messages.sendMessage(p, "no_eco_service");
@@ -35,9 +37,12 @@ public class SpawnCommand implements CommandExecutor {
 						
 					}
 					
+					// kein Geld
 					if (!MclTpitem.economy.has(p, MainCFG.getSpawnCost())) {
+						
 						Messages.sendMessage(p, "no_money");
 						return true;
+						
 					}
 
 					MclTpitem.economy.withdrawPlayer(p, MainCFG.getSpawnCost());
