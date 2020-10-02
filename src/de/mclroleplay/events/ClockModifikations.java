@@ -85,6 +85,7 @@ public class ClockModifikations implements Listener {
 			p.closeInventory();
 			Clock.clockRemoveMain(p);
 			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000, 1));
+			p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
 		}
 	}
 
