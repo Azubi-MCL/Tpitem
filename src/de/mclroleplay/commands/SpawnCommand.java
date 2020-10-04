@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
 import de.mclroleplay.main.MclTpitem;
-import de.mclroleplay.rpengine.config.Messages;
+import de.mclroleplay.rpengine.config.MsgCFG;
 import de.mclroleplay.rpengine.config.PlayersCFG;
 
 public class SpawnCommand implements CommandExecutor {
@@ -32,7 +32,7 @@ public class SpawnCommand implements CommandExecutor {
 					// kein eco service
 					if (MclTpitem.economy == null) {
 						
-						Messages.sendMessage(p, "no_eco_service");
+						MsgCFG.sendMessage(p, "no_eco_service");
 						return true;
 						
 					}
@@ -40,7 +40,7 @@ public class SpawnCommand implements CommandExecutor {
 					// kein Geld
 					if (!MclTpitem.economy.has(p, MainCFG.getSpawnCost())) {
 						
-						Messages.sendMessage(p, "no_money");
+						MsgCFG.sendMessage(p, "no_money");
 						return true;
 						
 					}
