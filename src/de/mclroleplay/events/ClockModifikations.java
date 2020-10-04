@@ -10,12 +10,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import com.earth2me.essentials.Essentials;
 
 import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
@@ -81,11 +84,36 @@ public class ClockModifikations implements Listener {
 		if (loc != null) {
 
 			Player p = (Player) e.getWhoClicked();
-			p.teleport(loc);
+
+			teleport(p, loc);
+
 			p.closeInventory();
 			Clock.clockRemoveMain(p);
 			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000, 1));
 			p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
+		}
+	}
+
+	/**
+	 * 
+	 * Diese Methode versucht den Spieler über Essentials zu teleportieren (damit
+	 * können beispielsweise die Essentials Cooldowns verwendet werden). Wenn das
+	 * nicht klappt findet ein normaler Teleport statt.
+	 * 
+	 * @author SkyLightEffect
+	 * @param p   Der Spieler, der teleportiert werden soll
+	 * @param loc Die Zielposition
+	 */
+	private void teleport(Player p, Location loc) {
+		if (Bukkit.getServer().getPluginManager().getPlugin("Essentials") != null) {
+			Essentials ess = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
+			try {
+				ess.getUser(p).getTeleport().teleport(loc, null, TeleportCause.END_PORTAL);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		} else {
+			p.teleport(loc);
 		}
 	}
 
