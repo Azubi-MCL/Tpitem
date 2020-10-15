@@ -10,15 +10,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import com.earth2me.essentials.Essentials;
 
 import de.mclroleplay.config.MainCFG;
 import de.mclroleplay.config.SpawnsCFG;
@@ -27,6 +25,12 @@ import de.mclroleplay.recipes.Clock;
 public class ClockModifikations implements Listener {
 
 	public static String invName = MainCFG.getInfName();
+
+	JavaPlugin pl;
+
+	public ClockModifikations(JavaPlugin pl) {
+		this.pl = pl;
+	}
 
 	// Gui Erstellung
 	public static Inventory invCreate() {
@@ -89,32 +93,39 @@ public class ClockModifikations implements Listener {
 
 			p.closeInventory();
 			Clock.clockRemoveMain(p);
-			p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000, 1));
-			p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
+
 		}
 	}
 
-	/**
-	 * 
-	 * Diese Methode versucht den Spieler über Essentials zu teleportieren (damit
-	 * können beispielsweise die Essentials Cooldowns verwendet werden). Wenn das
-	 * nicht klappt findet ein normaler Teleport statt.
-	 * 
-	 * @author SkyLightEffect
-	 * @param p   Der Spieler, der teleportiert werden soll
-	 * @param loc Die Zielposition
-	 */
+//	/**
+//	 * 
+//	 * Diese Methode versucht den Spieler über Essentials zu teleportieren (damit
+//	 * können beispielsweise die Essentials Cooldowns verwendet werden). Wenn das
+//	 * nicht klappt findet ein normaler Teleport statt.
+//	 * 
+//	 * @author SkyLightEffect
+//	 * @param p   Der Spieler, der teleportiert werden soll
+//	 * @param loc Die Zielposition
+//	 */
+//	
 	private void teleport(Player p, Location loc) {
-		if (Bukkit.getServer().getPluginManager().getPlugin("Essentials") != null) {
-			Essentials ess = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
-			try {
-				ess.getUser(p).getTeleport().teleport(loc, null, TeleportCause.END_PORTAL);
-			} catch (Exception ex) {
-				ex.printStackTrace();
+
+		p.sendMessage("§eDu wirst in §c7 Sekunden §eTeleportiert");
+		
+		pl.getServer().getScheduler().runTaskLater(pl, new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				p.teleport(loc);
+
+				p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000, 1));
+				p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
+				
 			}
-		} else {
-			p.teleport(loc);
-		}
+
+		}, 7 * 20L);
+
 	}
 
 	// Item Benutzung

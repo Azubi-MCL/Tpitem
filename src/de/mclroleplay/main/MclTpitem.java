@@ -43,7 +43,7 @@ public class MclTpitem extends JavaPlugin {
 
 		// Events
 		PluginManager pluginManager = Bukkit.getPluginManager();
-		pluginManager.registerEvents(new ClockModifikations(), this);
+		pluginManager.registerEvents(new ClockModifikations(this), this);
 
 		// Commands
 		this.getCommand("minv").setExecutor(new TpInventoryCommand());
